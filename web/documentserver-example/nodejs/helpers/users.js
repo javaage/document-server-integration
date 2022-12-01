@@ -119,13 +119,14 @@ users.getUser = function (id) {
     return result ? result : this[0];
 };
 
-// get a list of users with their name and email
+// get a list of users with their name, id and email
 users.getUserList = function (id) {
     var result = [];
     this.forEach(user => {
         if (user.id != id && user.name != null && user.email != null) {
             result.push({
                 email: user.email,
+                id: user.id,
                 name: user.name
             });
         }

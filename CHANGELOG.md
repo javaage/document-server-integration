@@ -1,5 +1,6 @@
 # Change Log
 
+- nodejs: user id in setUsers
 - referenceData
 - anonymous can't protect file
 - separate setting for checking the token in requests
