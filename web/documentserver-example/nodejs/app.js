@@ -1017,7 +1017,7 @@ app.get("/editor", function (req, res) {  // define a handler for editing docume
                 url: req.docManager.getServerUrl(true) + "/csv",
                 directUrl: !userDirectUrl ? null : req.docManager.getServerUrl() + "/csv",
             },
-            usersForMentions: user.id != "uid-0" ? users.getUsersForMentions(user.id) : null,
+            userList: user.id != "uid-0" ? users.getUserList(user.id) : null,
         };
 
         if (cfgSignatureEnable) {
