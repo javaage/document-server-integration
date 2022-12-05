@@ -265,7 +265,7 @@ if (typeof jQuery !== "undefined") {
     });
 
     jq(document).on("click", ".try-editor", function (e) {
-        var url = "create?fileType=" + e.target.attributes["data-type"].value;
+        var url = "create?fileExt=" + e.target.attributes["data-type"].value;
         if (jq("#createSample").is(":checked")) {
             url += "&sample=true";
         }

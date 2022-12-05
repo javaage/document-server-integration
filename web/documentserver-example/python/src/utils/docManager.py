@@ -107,7 +107,8 @@ def getCallbackUrl(filename, req):
 # get url to the created file
 def getCreateUrl(fileType, req):
     host = getServerUrl(False, req)
-    return f'{host}/create?fileType={fileType}'
+    fileExt = getInternalExtension(fileType).replace(".", "")
+    return f'{host}/create?fileExt={fileExt}'
 
 # get url to download a file
 def getDownloadUrl(filename, req, isServerUrl = True):
@@ -218,13 +219,12 @@ def saveFileFromUri(uri, path, req = None, meta = False):
     return
 
 # create sample file
-def createSample(fileType, sample, req):
-    ext = getInternalExtension(fileType) # get the internal extension of the given file type
+def createSample(ext, sample, req):
 
     if not sample:
         sample = 'false'
 
-    sampleName = 'sample' if sample == 'true' else 'new' # create sample or new template 
+    sampleName = 'sample.' if sample == 'true' else 'new.' # create sample or new template
 
     filename = getCorrectName(f'{sampleName}{ext}', req) # get file name with an index if such a file name already exists
     path = getStoragePath(filename, req)

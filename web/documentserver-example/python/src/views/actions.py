@@ -96,10 +96,10 @@ def createNew(request):
     response = {}
 
     try:
-        fileType = request.GET['fileType']
+        fileExt = request.GET['fileExt']
         sample = request.GET.get('sample', False)
 
-        filename = docManager.createSample(fileType, sample, request)  # create a new sample file of the necessary type
+        filename = docManager.createSample(fileExt, sample, request)  # create a new sample file of the necessary type
 
         return HttpResponseRedirect(f'edit?filename={filename}')  # return http response with redirection url
 
