@@ -105,7 +105,7 @@ public class EditorServlet extends HttpServlet {
         }
 
         // users data for mentions
-        List<Map<String, Object>> usersForMentions = Users.getUsersForMentions(user.getId());
+        List<Map<String, Object>> userList = Users.getUserList(user.getId());
 
         // check if the document token is enabled
         if (DocumentManager.tokenEnabled()) {
@@ -129,8 +129,8 @@ public class EditorServlet extends HttpServlet {
                 .substring(1, gson.toJson(dataInsertImage).length() - 1));
         request.setAttribute("dataCompareFile",  gson.toJson(dataCompareFile));
         request.setAttribute("dataMailMergeRecipients", gson.toJson(dataMailMergeRecipients));
-        request.setAttribute("usersForMentions", !user.getId()
-                .equals("uid-0") ? gson.toJson(usersForMentions) : null);
+        request.setAttribute("userList", !user.getId()
+                .equals("uid-0") ? gson.toJson(userList) : null);
         request.getRequestDispatcher("editor.jsp").forward(request, response);
     }
 

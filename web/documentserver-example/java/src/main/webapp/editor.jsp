@@ -193,7 +193,7 @@
             String[] histArray = Model.getHistory();
             String history = histArray[0];
             String historyData = histArray[1];
-            String usersForMentions = (String) request.getAttribute("usersForMentions");
+            String userList = (String) request.getAttribute("userList");
         %>
 
         if (config.editorConfig.user.id) {
@@ -213,10 +213,9 @@
                     document.location.reload();
                 };
             <% } %>
-            // add mentions for not anonymous users
             config.events['onRequestUsers'] = function () {
-                docEditor.setUsers({  // set a list of users to mention in the comments
-                    "users": <%=usersForMentions%>
+                docEditor.setUsers({  // set a list of users
+                    "users": <%=userList%>
                 });
             };
             // the user is mentioned in a comment

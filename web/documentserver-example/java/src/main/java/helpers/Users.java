@@ -111,12 +111,13 @@ public final class Users {
         return users;
     }
 
-    // get a list of users with their names and emails for mentions
-    public static List<Map<String, Object>> getUsersForMentions(final String id) {
+    // get a list of users with their name, id and email for mentions
+    public static List<Map<String, Object>> getUserList(final String id) {
         List<Map<String, Object>> usersData = new ArrayList<>();
         for (User user : users) {
             if (!user.getId().equals(id) && user.getName() != null && user.getEmail() != null) {
                 Map<String, Object> data = new HashMap<>();
+                data.put("id", user.getId());
                 data.put("name", user.getName());
                 data.put("email", user.getEmail());
                 usersData.add(data);
