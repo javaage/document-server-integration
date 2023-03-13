@@ -190,7 +190,7 @@
                 var histArray = [[${fileHistory}]];
                 var hist = histArray[0];
                 var historyData = histArray[1];
-                var usersForMentions = [[${usersForMentions}]];
+                var userList = [[${userList}]];
 
                 if (config.editorConfig.user.id != 4) {
                     if (hist && historyData) {
@@ -209,10 +209,9 @@
                             document.location.reload();
                         };
                     }
-                    // add mentions for not anonymous users
                     config.events['onRequestUsers'] = function () {
-                        docEditor.setUsers({  // set a list of users to mention in the comments
-                            "users": usersForMentions
+                        docEditor.setUsers({  // set a list of users
+                            "users": userList
                         });
                     };
                     // the user is mentioned in a comment

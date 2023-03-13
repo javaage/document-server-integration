@@ -25,7 +25,7 @@ import com.onlyoffice.integration.documentserver.managers.jwt.JwtManager;
 import com.onlyoffice.integration.documentserver.models.enums.Action;
 import com.onlyoffice.integration.documentserver.storage.FileStoragePathBuilder;
 import com.onlyoffice.integration.entities.User;
-import com.onlyoffice.integration.dto.Mentions;
+import com.onlyoffice.integration.dto.UserData;
 import com.onlyoffice.integration.documentserver.models.enums.Type;
 import com.onlyoffice.integration.documentserver.models.filemodel.FileModel;
 import com.onlyoffice.integration.services.UserServices;
@@ -155,25 +155,25 @@ public class EditorController {
         // get recipients data for mail merging and add it to the model
         model.addAttribute("dataMailMergeRecipients", getMailMerge(directUrl));
 
-        // get user data for mentions and add it to the model
-        model.addAttribute("usersForMentions", getUserMentions(uid));
+        // get user data and add it to the model
+        model.addAttribute("userList", getUserList(uid));
         return "editor.html";
     }
 
-    private List<Mentions> getUserMentions(final String uid) {  // get user data for mentions
-        List<Mentions> usersForMentions = new ArrayList<>();
+    private List<UserData> getUserList(final String uid) {  // get user data for user list
+        List<UserData> userList = new ArrayList<>();
         if (uid != null && !uid.equals("4")) {
             List<User> list = userService.findAll();
             for (User u : list) {
                 if (u.getId() != Integer.parseInt(uid) && u.getId() != ANONYMOUS_USER_ID) {
 
-                    // user data includes user names and emails
-                    usersForMentions.add(new Mentions(u.getName(), u.getEmail()));
+                    // user data includes user id, name and email
+                    userList.add(new UserData(u.getId(), u.getName(), u.getEmail()));
                 }
             }
         }
 
-        return usersForMentions;
+        return userList;
     }
 
     @SneakyThrows

@@ -25,7 +25,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Mentions {
+public class UserData {
+    private int id;
     private String name;
     private String email;
 }
