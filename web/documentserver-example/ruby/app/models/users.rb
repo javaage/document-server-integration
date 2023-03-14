@@ -118,11 +118,17 @@ class Users
             return @@users[0]
         end
 
-        def get_users_for_mentions(id)  # get a list of users with their names and emails for mentions
+        def get_user_list(id)  # get a list of users with their id, name and email
             usersData = []
             for user in @@users do
                 if (!user.id.eql?(id) && user.name != nil && user.email != nil)
-                    usersData.push({:name => user.name, :email => user.email})
+                    usersData.push(
+                      {
+                        :id => user.id,
+                        :name => user.name,
+                        :email => user.email
+                      }
+                    )
                 end
             end
             return usersData

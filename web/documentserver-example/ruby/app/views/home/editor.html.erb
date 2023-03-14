@@ -185,7 +185,7 @@
 
         <%
             history = @file.get_history
-            usersMentions = @file.get_users_mentions %>
+            userList = @file.get_user_list %>
 
             if (config.editorConfig.user.id) {
                 <% if history %>
@@ -204,10 +204,9 @@
                         document.location.reload();
                     };
                 <% end %>
-            // add mentions for not anonymous users
             config.events['onRequestUsers'] = function () {
-                docEditor.setUsers({  // set a list of users to mention in the comments
-                    "users": <%= raw @file.get_users_mentions.to_json %>
+                docEditor.setUsers({  // set a list of users
+                    "users": <%= raw @file.get_user_list.to_json %>
                 });
             };
             // the user is mentioned in a comment

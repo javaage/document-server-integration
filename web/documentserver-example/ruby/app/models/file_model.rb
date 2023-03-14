@@ -341,9 +341,9 @@ class FileModel
     return dataMailMergeRecipients
   end
 
-  # get users data for mentions
-  def get_users_mentions
-    return !@user.id.eql?("uid-0") ? Users.get_users_for_mentions(@user.id) : nil
+  # get users data
+  def get_user_list
+    return !@user.id.eql?("uid-0") ? Users.get_user_list(@user.id) : nil
   end
 
   # get direct url existence flag
