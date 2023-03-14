@@ -216,8 +216,8 @@ final class DocEditorView extends View
             "url" => serverPath(true) . "/webeditor-ajax.php?type=csv",
         ];
 
-        // users data for mentions
-        $usersForMentions = $user->id != "uid-0" ? $userList->getUsersForMentions($user->id) : null;
+        // users data
+        $userList = $user->id != "uid-0" ? $userList->getUserList($user->id) : null;
 
         // check if the secret key to generate token exists
         if ($jwtManager->isJwtEnabled()) {
@@ -274,7 +274,7 @@ final class DocEditorView extends View
             "fileNotFoundAlert" => !file_exists(getStoragePath($filename)) ? "alert('File not found'); return;" : "",
             "config" => json_encode($config),
             "history" => $historyLayout,
-            "usersForMentions" => json_encode($usersForMentions),
+            "usersForMentions" => json_encode($userList),
             ];
     }
 }

@@ -165,18 +165,19 @@ final class ExampleUsers
     }
 
     /**
-     * Get a list of users with their names and emails for mentions
+     * Get a list of users with their id, name and email
      *
      * @param string|null $id
      *
      * @return array
      */
-    public function getUsersForMentions(?string $id): array
+    public function getUserList(?string $id): array
     {
         $usersData = [];
         foreach ($this->users as $user) {
             if ($user->id != $id && $user->name != null && $user->email != null) {
                 $usersData[] = [
+                    "id" => $user->id,
                     "name" => $user->name,
                     "email" => $user->email,
                 ];
